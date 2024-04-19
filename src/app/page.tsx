@@ -1,29 +1,22 @@
 'use client'
 
 import "../app/globals.css"
-import { Chess } from "chess.js"
-import { Chessboard, FEN } from "cm-chessboard";
-import { useEffect } from "react";
-import "cm-chessboard/assets/chessboard.css"
-
+import Openings from "@/comp/Openings"
+import Play from "@/comp/Play"
+import  Link  from "next/link"
 
 export default function Home() {
-
-  useEffect(() => {
-    console.log('rendering chessboard')
-    const board = new Chessboard(document.getElementById("board"),{
-      position: "rn2k1r1/ppp1pp1p/3p2p1/5bn1/P7/2N2B2/1PPPPP2/2BNK1RR w Gkq - 4 11"
-    });
-
-    return () => {
-      board.destroy();
-    }
-
-  }, []);
-
+  
   return (
-    <main>
-      <div id="board" className="w-2/5 "></div>
-    </main>
-  );
+    <div className="max-w-screen-lg mx-auto ">
+      <nav className="p-6 mb-2 bg-grayy ">
+        <ul className="flex text-center justify-center ">
+          <Link href="/"><li className="mx-5 ">Home</li></Link>
+          <Link href="/openings"><li className="mx-5 ">Openings</li></Link>
+        </ul>
+      </nav>
+      
+      <Play/>
+    </div>
+  )
 }

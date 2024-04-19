@@ -31,3 +31,8 @@ body {
     text-wrap: balance;
   }
 }
+
+@font-face {
+  font-family: 'sansItalic';
+  src: url('../font/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
