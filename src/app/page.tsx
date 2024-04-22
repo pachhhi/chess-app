@@ -1,7 +1,7 @@
 'use client'
 
 import "../app/globals.css"
-import Openings from "@/comp/Openings"
+import Openings from "../comp/Openings"
 import Play from "@/comp/Play"
 import  Link  from "next/link"
 

@@ -3,9 +3,9 @@ import "cm-chessboard/assets/chessboard.css"
 import { useEffect, useRef, useState } from "react";
 import { Chess, Square } from "chess.js";
 import {
-    COLOR,
     MARKER_TYPE,
     INPUT_EVENT_TYPE,
+    COLOR
 }from "cm-chessboard/src/Chessboard";
 
 export default function Play() {
@@ -19,33 +19,26 @@ export default function Play() {
             position: FEN.start 
         })
 
-        const inputHandler = async (event: Square) => {
-            board.removeMarkers(MARKER_TYPE);
-            if (event === INPUT_EVENT_TYPE.moveInputStarted) {
-                const moves = chess.moves({ Square: event.square, verbose: true });
-                for (const move of moves) {
-                    board.addMarker(MARKER_TYPE, move.to);
-                }
-                return moves.length > 0;
-            }
-            if (event === INPUT_EVENT_TYPE.validateMoveInput) {
-                const move = {
-                    from: event,
-                    to: event,
-                    promotion: chess.move({
-                        from: event,
-                        to: event,
-                        promotion: "q"
-                    })
-                    ? "q"
-                    :undefined
-                };
-                const result = chess.move(move);
-                return result
-            }
-        };
-
-        board.enableMoveInput(inputHandler);
+        board.enableMoveInput((event) => {
+            console.log("move input", event)
+        switch (event.type) {
+              case INPUT_EVENT_TYPE.moveInputStarted:
+                  console.log(`moveInputStarted: ${event.squareFrom}`)
+                  return true // false cancels move
+              case INPUT_EVENT_TYPE.validateMoveInput:
+                  console.log(`validateMoveInput: ${event.squareFrom}-${event.squareTo}`)
+                  return true // false cancels move
+              case INPUT_EVENT_TYPE.moveInputCanceled:
+                  console.log(`moveInputCanceled`)
+                  break
+              case INPUT_EVENT_TYPE.moveInputFinished:
+                  console.log(`moveInputFinished`)
+                  break
+              case INPUT_EVENT_TYPE.movingOverSquare:
+                  console.log(`movingOverSquare: ${event.squareTo}`)
+                  break
+          }
+        }, COLOR.white)
 
         return () => {
             board.destroy();

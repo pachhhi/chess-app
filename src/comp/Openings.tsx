@@ -36,7 +36,7 @@ export default function Openings() {
           {openings.map((position, index) => (
             <div key={index} className="">
               <p className="flex bg-grayy text-white justify-center text-xl font-light pt-2 pb-2">{position.name}</p>
-              <div id={`board-${index}`} className="flex"></div>
+              <div id={`board-${index}`} className="flex w-100"></div>
             </div>
           ))} 
           </div>
