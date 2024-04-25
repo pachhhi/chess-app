@@ -15,7 +15,6 @@ export default function Home() {
           <Link href="/openings"><li className="mx-5 ">Openings</li></Link>
         </ul>
       </nav>
-      
       <Play/>
     </div>
   )
