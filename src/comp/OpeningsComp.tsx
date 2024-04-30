@@ -1,3 +1,5 @@
+'use client'
+
 import { Chess } from "chess.js"
 import { Chessboard, FEN } from "cm-chessboard";
 import { useEffect, useState, useRef } from "react";
@@ -5,7 +7,7 @@ import "cm-chessboard/assets/chessboard.css"
 
 
 
-export default function Openings() {
+export default function OpeningsComp() {
     const openings = [
         {name:'Sistema Londres', fen:'rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R b KQkq - 3 3' },
         {name: 'Defensa Siciliana', fen:'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2'},
